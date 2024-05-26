@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		rb.freezeRotation = true;
 		cAnim = GetComponent<CharacterAnimation>();
-		GetComponent<CharacterColorManager>().SetRandomColor();
+		GetComponent<CharacterColorManager>().SetColor(PlayerStatsManager.instance.GetPlayerColor());
 	}
 	
 	void Update()
