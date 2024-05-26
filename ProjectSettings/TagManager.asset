@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstaculo
-  - Fabricios
   - 
   - 
-  - 
+  - Entity
+  - Wall
+  - Ground
   - 
   - 
   - 
