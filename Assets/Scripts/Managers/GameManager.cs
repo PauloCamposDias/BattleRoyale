@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
+	public enum PlayerWinStatus {PLAYING, WON, LOST}
+	public PlayerWinStatus state;
 	public UIManager uiManager;
 	void Awake()
 	{
@@ -18,5 +20,10 @@ public class GameManager : MonoBehaviour
 		}
 		transform.SetParent(null);
 		DontDestroyOnLoad(gameObject);
+	}
+	
+	public void SetState(PlayerWinStatus state)
+	{
+		this.state = state;
 	}
 }

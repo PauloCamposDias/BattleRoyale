@@ -21,9 +21,9 @@ public class NPCMovement : MonoBehaviour
 	bool isGrounded;
 	
 	[SerializeField] NavMeshAgent agent;
-    [SerializeField] float time;
-    [SerializeField] GameObject[] checkpoints;
-    Vector3 goal;
+	[SerializeField] float time;
+	[SerializeField] GameObject[] checkpoints;
+	Vector3 goal;
 	
 	void Start()
 	{
@@ -31,13 +31,15 @@ public class NPCMovement : MonoBehaviour
 		rb.freezeRotation = true;
 		cAnim = GetComponent<CharacterAnimation>();
 		GetComponent<CharacterColorManager>().SetRandomColor();
-        Invoke("MoveTowardGoal", time);
+		Invoke("MoveTowardGoal", time);
 	}
 	
 	void Update()
 	{
-        agent.SetDestination(goal);
-        
+		if(!cAnim.canMove) return;
+		AnimationHandler();
+		agent.SetDestination(goal);
+		
 		isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight *.5f + .2f, whatIsGround);
 		
 		if(isGrounded)
@@ -49,11 +51,17 @@ public class NPCMovement : MonoBehaviour
 			rb.drag = 0;
 		}
 	}
+	
+	void AnimationHandler()
+	{
+		if(agent.velocity.magnitude != 0) cAnim.ChangeState(CharacterAnimation.State.RUNNING);
+		else cAnim.ChangeState(CharacterAnimation.State.IDLE);
+	}
 
-    void MoveTowardGoal()
-    {
-        int rand = UnityEngine.Random.Range(0, checkpoints.Length);
-        goal = checkpoints[rand].transform.position; 
-        Invoke("MoveTowardGoal", time);
-    }
+	void MoveTowardGoal()
+	{
+		int rand = UnityEngine.Random.Range(0, checkpoints.Length);
+		goal = checkpoints[rand].transform.position; 
+		Invoke("MoveTowardGoal", time);
+	}
 }

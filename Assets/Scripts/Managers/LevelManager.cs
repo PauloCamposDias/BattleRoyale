@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour
 	public static LevelManager instance;
 	LevelState state;
 	
+	public int AmountToClassify;
+	public int Classified = 0;
+	
 	[SerializeField] float prepTime;
 	public Action OnMatchStart, OnMatchEnd;
 	[SerializeField] float matchTime;
@@ -59,6 +62,7 @@ public class LevelManager : MonoBehaviour
 			ChangeState(LevelState.MATCH);
 			OnMatchStart();
 		}
+		if(GameManager.instance.uiManager != null) GameManager.instance.uiManager.GetComponent<FirstLevel>().UpdateTimer(prepTime);
 	}
 	void Match()
 	{
@@ -68,10 +72,12 @@ public class LevelManager : MonoBehaviour
 			ChangeState(LevelState.END);
 			OnMatchEnd();	
 		}
+		if(GameManager.instance.uiManager != null) GameManager.instance.uiManager.GetComponent<FirstLevel>().UpdateTimer(matchTime);
 	}
 	
 	void End()
 	{
-		Debug.Log("Match Ended");
+		GameManager.instance.SetState(GameManager.PlayerWinStatus.LOST);
+		GameManager.instance.uiManager.ChangeScene("StatusScene");
 	}
 }

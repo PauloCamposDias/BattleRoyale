@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+	void Start()
+	{
+		GameManager.instance.uiManager = this;
+	}
 	public void ChangeScene(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);

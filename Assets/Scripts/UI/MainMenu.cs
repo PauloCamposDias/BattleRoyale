@@ -24,6 +24,10 @@ public class MainMenu : UIManager
 	
 	void Start()
 	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		GameManager.instance.SetState(GameManager.PlayerWinStatus.PLAYING);
+		
 		mainCamera = Camera.main;
 		mainCamera.transform.position = cameraPositions[0].position;
 		

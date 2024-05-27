@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Pista de Obstaculos.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1d7d4c1adf7c2a641befee80de321a41
+  - enabled: 1
+    path: Assets/Scenes/ObstacleCourse.unity
+    guid: fdb71e3c402487141b9e001b3e177c3f
+  - enabled: 1
+    path: Assets/Scenes/StatusScene.unity
+    guid: 23dc9fb910e62294e86c4b88dd14a04a
   m_configObjects: {}
